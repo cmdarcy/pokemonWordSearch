@@ -7,12 +7,17 @@ function SetupForm() {
 	const [numPokemon, setnumPokemon] = useState(0);
 	const navigate = useNavigate();
 	let PokemonList = [];
+	let longestPokemon = 0;
 	async function handleSubmit(event) {
 		event.preventDefault();
 		for (let index = 0; index < numPokemon; index++) {
-			PokemonList.push(await getRandPokemon());
+			let randPokemon = await getRandPokemon();
+			PokemonList.push(randPokemon);
+			longestPokemon = Math.max(longestPokemon, randPokemon.length);
 		}
 		localStorage.setItem("PokemonList", JSON.stringify(PokemonList));
+		longestPokemon += 4;
+		localStorage.setItem("longestPokemon", longestPokemon);
 		navigate("/board");
 	}
 	return (
