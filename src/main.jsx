@@ -12,12 +12,12 @@ import SetupForm from "./components/SetupForm/SetupForm.jsx";
 import "./index.css";
 
 const router = createBrowserRouter(
-	createRoutesFromElements([
+	createRoutesFromElements(
 		<Route path="/" element={<App />}>
 			<Route path="/home" element={<SetupForm />} />
 			<Route path="/board" element={<Board />} />
-		</Route>,
-	])
+		</Route>
+	)
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
