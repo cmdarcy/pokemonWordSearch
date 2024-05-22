@@ -28,31 +28,88 @@ function Board() {
 
 	//fill board with pokemon letters
 	pokemonList.forEach((pokemon) => {
+		let pokemonLetters = pokemon.split("");
 		let startingCoordinateX;
 		let startingCoordinateY;
-		for (let attempt = 1; attempt <= 10; attempt++) {
-			startingCoordinateX = randomStartingCoordinate(
+		let restrictedCoordX;
+		let restrictedCoordY;
+		//attempt to place pokemon 15 times before giving up
+		for (let attempt = 1; attempt <= 15; attempt++) {
+			restrictedCoordX = randomStartingCoordinate(
 				longestPokemon - pokemon.length
 			);
-			startingCoordinateY = randomStartingCoordinate(
+			restrictedCoordY = randomStartingCoordinate(
 				longestPokemon - pokemon.length
 			);
+			startingCoordinateX = randomStartingCoordinate(longestPokemon);
+			startingCoordinateY = randomStartingCoordinate(longestPokemon);
+
+			//create potential row
+			const potentialRow = boardArray[startingCoordinateY].slice(
+				restrictedCoordX,
+				restrictedCoordX + pokemon.length
+			);
+			//create potential column
+			const potentialColumn = [];
+			for (let index = 0; index < pokemon.length; index++) {
+				potentialColumn.push(
+					boardArray[restrictedCoordY + index][startingCoordinateX]
+				);
+			}
+			console.log(`Attempt ${attempt} for ${pokemon}`);
+			console.log("Row:", potentialRow);
+			console.log("Column:", potentialColumn);
+
+			//check if row doesn't already contain a pokemon
 			if (
-				!boardArray[startingCoordinateY].some((square) =>
+				!potentialRow.some((square) =>
 					square.props.hasOwnProperty("associatedPokemon")
 				)
 			) {
-				let pokemonLetters = pokemon.split("");
+				//replace row section with pokemon letters
+				console.log(
+					`Placing ${pokemon} at ${restrictedCoordX}, ${startingCoordinateY} horizontally`
+				);
 				pokemonLetters.forEach((letter, index) => {
-					boardArray[startingCoordinateY][startingCoordinateX + index] = (
+					boardArray[startingCoordinateY][restrictedCoordX + index] = (
 						<Square
-							key={index}
+							key={
+								`row${startingCoordinateY}` + `col${restrictedCoordX + index}`
+							}
+							coordinates={[restrictedCoordX + index, startingCoordinateY]}
 							letter={letter.toUpperCase()}
 							associatedPokemon={pokemon}
 						/>
 					);
 				});
 				break;
+				//check if column doesn't already contain a pokemon
+			} else if (
+				!potentialColumn.some((square) =>
+					square.props.hasOwnProperty("associatedPokemon")
+				)
+			) {
+				//replace column section with pokemon letters
+				console.log(
+					`Placing ${pokemon} at ${startingCoordinateX}, ${restrictedCoordY} vertically`
+				);
+				pokemonLetters.forEach((letter, index) => {
+					boardArray[restrictedCoordY + index][startingCoordinateX] = (
+						<Square
+							key={
+								`row${restrictedCoordY + index}` + `col${startingCoordinateX}`
+							}
+							coordinates={[startingCoordinateX, restrictedCoordY + index]}
+							letter={letter.toUpperCase()}
+							associatedPokemon={pokemon}
+						/>
+					);
+				});
+				break;
+			}
+			if (attempt === 15) {
+				console.log(`Could not place ${pokemon}`);
+				alert(`Could not place ${pokemon}`);
 			}
 		}
 	});
