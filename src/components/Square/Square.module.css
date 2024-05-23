@@ -5,3 +5,12 @@
 .pokemonLetterbox {
 	background-color: red;
 }
+
+.letterbox:hover,
+.pokemonLetterbox:hover {
+	background-color: darkblue;
+}
+
+.selected {
+	background-color: purple;
+}
