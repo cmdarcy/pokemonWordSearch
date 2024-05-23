@@ -20,7 +20,7 @@ function Board() {
 				<Square
 					key={`row${row}` + `col${col}`}
 					letter={randomLetter()}
-					coordinates={[col + 1, row + 1]}
+					coordinates={[col, row]}
 				/>
 			);
 		}
@@ -124,7 +124,6 @@ function Board() {
 				console.log(
 					`Placing ${pokemon} at ${restrictedCoordX}, ${restrictedCoordY} diagonally`
 				);
-				alert(`${pokemon} was placed diagonally`);
 				pokemonLetters.forEach((letter, index) => {
 					boardArray[restrictedCoordY + index][restrictedCoordX + index] = (
 						<Square
