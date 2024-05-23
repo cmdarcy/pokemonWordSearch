@@ -56,9 +56,17 @@ function Board() {
 					boardArray[restrictedCoordY + index][startingCoordinateX]
 				);
 			}
+			//create potential diagonal
+			const potentialDiagonal = [];
+			for (let index = 0; index < pokemon.length; index++) {
+				potentialDiagonal.push(
+					boardArray[restrictedCoordY + index][restrictedCoordX + index]
+				);
+			}
 			console.log(`Attempt ${attempt} for ${pokemon}`);
 			console.log("Row:", potentialRow);
 			console.log("Column:", potentialColumn);
+			console.log("Diagonal:", potentialDiagonal);
 
 			//check if row doesn't already contain a pokemon
 			if (
@@ -100,6 +108,31 @@ function Board() {
 								`row${restrictedCoordY + index}` + `col${startingCoordinateX}`
 							}
 							coordinates={[startingCoordinateX, restrictedCoordY + index]}
+							letter={letter.toUpperCase()}
+							associatedPokemon={pokemon}
+						/>
+					);
+				});
+				break;
+				//check if diagonal doesn't already contain a pokemon
+			} else if (
+				!potentialDiagonal.some((square) =>
+					square.props.hasOwnProperty("associatedPokemon")
+				)
+			) {
+				//replace diagonal section with pokemon letters
+				console.log(
+					`Placing ${pokemon} at ${restrictedCoordX}, ${restrictedCoordY} diagonally`
+				);
+				alert(`${pokemon} was placed diagonally`);
+				pokemonLetters.forEach((letter, index) => {
+					boardArray[restrictedCoordY + index][restrictedCoordX + index] = (
+						<Square
+							key={
+								`row${restrictedCoordY + index}` +
+								`col${restrictedCoordX + index}`
+							}
+							coordinates={[restrictedCoordX + index, restrictedCoordY + index]}
 							letter={letter.toUpperCase()}
 							associatedPokemon={pokemon}
 						/>
