@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 function Board() {
 	const pokemonList = JSON.parse(localStorage.getItem("PokemonList"));
 	const longestPokemon = JSON.parse(localStorage.getItem("longestPokemon"));
+	const selectedArray = [];
+	const answersArray = {};
 	const boardStyles = {
 		gridTemplateColumns: `repeat(${longestPokemon}, 1fr)`,
 		gridTemplateRows: `repeat(${longestPokemon}, 1fr)`,
@@ -21,6 +23,8 @@ function Board() {
 					key={`row${row}` + `col${col}`}
 					letter={randomLetter()}
 					coordinates={[col, row]}
+					selectedArray={selectedArray}
+					answersArray={answersArray}
 				/>
 			);
 		}
@@ -78,6 +82,7 @@ function Board() {
 				console.log(
 					`Placing ${pokemon} at ${restrictedCoordX}, ${startingCoordinateY} horizontally`
 				);
+				answersArray[pokemon] = [];
 				pokemonLetters.forEach((letter, index) => {
 					boardArray[startingCoordinateY][restrictedCoordX + index] = (
 						<Square
@@ -87,8 +92,15 @@ function Board() {
 							coordinates={[restrictedCoordX + index, startingCoordinateY]}
 							letter={letter.toUpperCase()}
 							associatedPokemon={pokemon}
+							selectedArray={selectedArray}
+							answersArray={answersArray}
 						/>
 					);
+					//add coordinates of pokemon to answersArray
+					answersArray[pokemon].push([
+						restrictedCoordX + index,
+						startingCoordinateY,
+					]);
 				});
 				break;
 				//check if column doesn't already contain a pokemon
@@ -101,6 +113,7 @@ function Board() {
 				console.log(
 					`Placing ${pokemon} at ${startingCoordinateX}, ${restrictedCoordY} vertically`
 				);
+				answersArray[pokemon] = [];
 				pokemonLetters.forEach((letter, index) => {
 					boardArray[restrictedCoordY + index][startingCoordinateX] = (
 						<Square
@@ -110,8 +123,15 @@ function Board() {
 							coordinates={[startingCoordinateX, restrictedCoordY + index]}
 							letter={letter.toUpperCase()}
 							associatedPokemon={pokemon}
+							selectedArray={selectedArray}
+							answersArray={answersArray}
 						/>
 					);
+					//add coordinates of pokemon to answersArray
+					answersArray[pokemon].push([
+						startingCoordinateX,
+						restrictedCoordY + index,
+					]);
 				});
 				break;
 				//check if diagonal doesn't already contain a pokemon
@@ -124,6 +144,7 @@ function Board() {
 				console.log(
 					`Placing ${pokemon} at ${restrictedCoordX}, ${restrictedCoordY} diagonally`
 				);
+				answersArray[pokemon] = [];
 				pokemonLetters.forEach((letter, index) => {
 					boardArray[restrictedCoordY + index][restrictedCoordX + index] = (
 						<Square
@@ -134,8 +155,15 @@ function Board() {
 							coordinates={[restrictedCoordX + index, restrictedCoordY + index]}
 							letter={letter.toUpperCase()}
 							associatedPokemon={pokemon}
+							selectedArray={selectedArray}
+							answersArray={answersArray}
 						/>
 					);
+					//add coordinates of pokemon to answersArray
+					answersArray[pokemon].push([
+						restrictedCoordX + index,
+						restrictedCoordY + index,
+					]);
 				});
 				break;
 			}
