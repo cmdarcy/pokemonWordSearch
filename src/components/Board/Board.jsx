@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 function Board() {
 	const pokemonList = JSON.parse(localStorage.getItem("PokemonList"));
 	const longestPokemon = JSON.parse(localStorage.getItem("longestPokemon"));
+	const PokemonIds = JSON.parse(localStorage.getItem("PokemonIds"));
 	const selectedArray = [];
 	const answersArray = {};
 	const boardStyles = {
@@ -177,8 +178,12 @@ function Board() {
 	return (
 		<>
 			<ul>
-				{Object.keys(answersArray).map((pokemon) => (
-					<PokemonOption key={pokemon} pokemon={pokemon} />
+				{Object.keys(answersArray).map((pokemon, index) => (
+					<PokemonOption
+						key={pokemon}
+						pokemon={pokemon}
+						id={PokemonIds[index]}
+					/>
 				))}
 			</ul>
 			<div className={styles.board} style={boardStyles}>

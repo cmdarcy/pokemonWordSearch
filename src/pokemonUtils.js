@@ -4,7 +4,9 @@ export async function getRandPokemon() {
 		`https://pokeapi.co/api/v2/pokemon/${RandomPokemon}`
 	);
 	const data = await response.json();
-	return data.name;
+	const { name, id } = data;
+	const pokemonObject = { name, id };
+	return pokemonObject;
 }
 
 export function randomLetter() {
