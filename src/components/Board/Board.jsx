@@ -1,5 +1,6 @@
 import { randomLetter, randomStartingCoordinate } from "../../pokemonUtils";
 import Square from "../Square/Square";
+import PokemonOption from "../PokemonOption/PokemonOption";
 import styles from "./Board.module.css";
 import { Link } from "react-router-dom";
 
@@ -176,8 +177,8 @@ function Board() {
 	return (
 		<>
 			<ul>
-				{pokemonList.map((pokemon) => (
-					<li>{pokemon}</li>
+				{Object.keys(answersArray).map((pokemon) => (
+					<PokemonOption key={pokemon} pokemon={pokemon} />
 				))}
 			</ul>
 			<div className={styles.board} style={boardStyles}>

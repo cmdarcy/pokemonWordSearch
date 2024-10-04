@@ -17,9 +17,19 @@ function Square({
 		//loop through answersArray and check if selectedArray matches any pokemon
 		for (const pokemon in answersArray) {
 			if (selectedArray.toString() === answersArray[pokemon].toString()) {
-				alert(`You win! The pokemon is ${pokemon}`);
+				console.log(`You found ${pokemon}`);
+				const PokemonName = document.querySelector(`[datatype="${pokemon}"]`);
+				PokemonName.dataset.type = "found";
+				PokemonName.style.textDecoration = "line-through";
 				selectedArray.splice(0, selectedArray.length);
 			}
+		}
+		// check if every pokemon has been found
+		if (
+			document.querySelectorAll(`[data-type="found"]`).length ===
+			document.querySelectorAll(`[datatype]`).length
+		) {
+			alert("You win! You found all pokemons!");
 		}
 	}
 	return (
