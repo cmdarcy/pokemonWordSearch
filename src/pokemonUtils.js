@@ -1,9 +1,12 @@
 export async function getRandPokemon() {
-	let RandomPokemon = Math.floor(Math.random() * 807) + 1;
-	const response = await fetch(
-		`https://pokeapi.co/api/v2/pokemon/${RandomPokemon}`
-	);
-	const data = await response.json();
+	let data;
+	do {
+		let RandomPokemon = Math.floor(Math.random() * 807) + 1;
+		const response = await fetch(
+			`https://pokeapi.co/api/v2/pokemon/${RandomPokemon}`
+		);
+		data = await response.json();
+	} while (data.name.length >= 12);
 	const { name, id } = data;
 	const pokemonObject = { name, id };
 	return pokemonObject;
