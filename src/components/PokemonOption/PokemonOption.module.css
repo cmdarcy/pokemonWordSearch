@@ -1,0 +1,10 @@
+.flex_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.audio {
+	max-width: 50px;
+}
