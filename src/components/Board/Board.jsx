@@ -1,4 +1,8 @@
-import { randomLetter, randomStartingCoordinate } from "../../pokemonUtils";
+import {
+	generateRandomChoice,
+	randomLetter,
+	randomStartingCoordinate,
+} from "../../pokemonUtils";
 import Square from "../Square/Square";
 import PokemonOption from "../PokemonOption/PokemonOption";
 import styles from "./Board.module.css";
@@ -39,6 +43,7 @@ function Board() {
 		let startingCoordinateY;
 		let restrictedCoordX;
 		let restrictedCoordY;
+
 		//attempt to place pokemon 15 times before giving up
 		for (let attempt = 1; attempt <= 15; attempt++) {
 			restrictedCoordX = randomStartingCoordinate(
@@ -69,17 +74,16 @@ function Board() {
 					boardArray[restrictedCoordY + index][restrictedCoordX + index]
 				);
 			}
-			console.log(`Attempt ${attempt} for ${pokemon}`);
-			console.log("Row:", potentialRow);
-			console.log("Column:", potentialColumn);
-			console.log("Diagonal:", potentialDiagonal);
 
-			//check if row doesn't already contain a pokemon
-			if (
-				!potentialRow.some((square) =>
-					square.props.hasOwnProperty("associatedPokemon")
-				)
-			) {
+			let randomChoice = generateRandomChoice(
+				potentialRow,
+				potentialColumn,
+				potentialDiagonal
+			);
+
+			console.log(`Attempt ${attempt} for ${pokemon}`);
+
+			if (randomChoice === "horizontal") {
 				//replace row section with pokemon letters
 				console.log(
 					`Placing ${pokemon} at ${restrictedCoordX}, ${startingCoordinateY} horizontally`
@@ -105,12 +109,7 @@ function Board() {
 					]);
 				});
 				break;
-				//check if column doesn't already contain a pokemon
-			} else if (
-				!potentialColumn.some((square) =>
-					square.props.hasOwnProperty("associatedPokemon")
-				)
-			) {
+			} else if (randomChoice === "vertical") {
 				//replace column section with pokemon letters
 				console.log(
 					`Placing ${pokemon} at ${startingCoordinateX}, ${restrictedCoordY} vertically`
@@ -136,12 +135,7 @@ function Board() {
 					]);
 				});
 				break;
-				//check if diagonal doesn't already contain a pokemon
-			} else if (
-				!potentialDiagonal.some((square) =>
-					square.props.hasOwnProperty("associatedPokemon")
-				)
-			) {
+			} else if (randomChoice === "diagonal") {
 				//replace diagonal section with pokemon letters
 				console.log(
 					`Placing ${pokemon} at ${restrictedCoordX}, ${restrictedCoordY} diagonally`
@@ -168,9 +162,11 @@ function Board() {
 					]);
 				});
 				break;
+			} else {
+				console.log(`Could not place ${pokemon} on attempt ${attempt}`);
 			}
 			if (attempt === 15) {
-				console.log(`Could not place ${pokemon}`);
+				console.log(`Could not place ${pokemon} after 15 attempts`);
 				alert(`Could not place ${pokemon}`);
 			}
 		}
