@@ -9,12 +9,13 @@ import {
 import App from "./App.jsx";
 import Board from "./components/Board/Board.jsx";
 import SetupForm from "./components/SetupForm/SetupForm.jsx";
+import ErrorPage from "./components/ErrorPage/ErrorPage.jsx";
 import "./index.css";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
-		<Route path="/" element={<App />}>
-			<Route path="/home" element={<SetupForm />} />
+		<Route path="/" element={<App />} errorElement={<ErrorPage />}>
+			<Route index element={<SetupForm />} />
 			<Route path="/board" element={<Board />} />
 		</Route>
 	)

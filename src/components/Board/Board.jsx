@@ -185,7 +185,7 @@ function Board() {
 			<div className={styles.board} style={boardStyles}>
 				{boardArray}
 			</div>
-			<Link to="/home">Back to Home</Link>
+			<Link to="/">Back to Home</Link>
 		</>
 	);
 }
