@@ -173,7 +173,7 @@ function Board() {
 	});
 	return (
 		<>
-			<ul>
+			<ul className={styles.pokemon_list}>
 				{Object.keys(answersArray).map((pokemon, index) => (
 					<PokemonOption
 						key={pokemon}

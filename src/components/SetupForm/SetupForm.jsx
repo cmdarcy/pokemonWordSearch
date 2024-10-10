@@ -27,6 +27,7 @@ function SetupForm() {
 		<>
 			<form action="" onSubmit={handleSubmit}>
 				<input
+					className={styles.input}
 					type="number"
 					placeholder="Number of Pokemon"
 					min="0"
@@ -34,7 +35,9 @@ function SetupForm() {
 					value={numPokemon}
 					onChange={(e) => setnumPokemon(e.target.value)}
 				/>
-				<button type="submit">Generate Board</button>
+				<button type="submit" className={styles.button}>
+					Generate Board
+				</button>
 			</form>
 		</>
 	);

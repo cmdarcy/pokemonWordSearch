@@ -1,9 +1,10 @@
-import "./App.css";
 import { Outlet } from "react-router-dom";
 function App() {
 	return (
 		<>
-			<header>Pokemon Word Search</header>
+			<header>
+				<h1>Pokemon Word Search</h1>
+			</header>
 			<main>
 				<Outlet />
 			</main>
