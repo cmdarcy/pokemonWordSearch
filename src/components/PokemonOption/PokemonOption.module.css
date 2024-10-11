@@ -1,10 +1,15 @@
 .flex_container {
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	gap: 10px;
+	min-width: 280px;
+	justify-content: space-around;
 }
 
 .audio {
 	max-width: 50px;
+}
+
+.pokemon_name {
+	color: var(--tertiary-color);
 }

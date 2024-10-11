@@ -2,7 +2,9 @@ import styles from "./PokemonOption.module.css";
 function PokemonOption({ pokemon, id = 1 }) {
 	return (
 		<div className={styles.flex_container}>
-			<p datatype={pokemon}>{pokemon}</p>
+			<p className={styles.pokemon_name} datatype={pokemon}>
+				{pokemon}
+			</p>
 			<img
 				src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
 				alt=""

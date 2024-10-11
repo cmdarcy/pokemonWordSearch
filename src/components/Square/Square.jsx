@@ -36,14 +36,22 @@ function Square({
 		<>
 			{associatedPokemon ? (
 				<button
-					className={selected ? styles.selected : styles.pokemonLetterbox}
+					className={
+						selected
+							? styles.selected + " " + styles.board_button
+							: styles.pokemonLetterbox + " " + styles.board_button
+					}
 					onClick={handleClick}
 				>
 					{letter}
 				</button>
 			) : (
 				<button
-					className={selected ? styles.selected : styles.letterbox}
+					className={
+						selected
+							? styles.selected + " " + styles.board_button
+							: styles.letterbox + " " + styles.board_button
+					}
 					onClick={handleClick}
 				>
 					{letter}
