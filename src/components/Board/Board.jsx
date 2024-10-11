@@ -185,6 +185,18 @@ function Board() {
 			<div className={styles.board} style={boardStyles}>
 				{boardArray}
 			</div>
+			<dialog>
+				<h2>You won!</h2>
+				<p>You caught them all!</p>
+				<button
+					onClick={() => {
+						const dialog = document.querySelector("dialog");
+						dialog.close();
+					}}
+				>
+					Close
+				</button>
+			</dialog>
 			<Link to="/">Back to Home</Link>
 		</>
 	);

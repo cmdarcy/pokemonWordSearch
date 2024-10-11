@@ -29,7 +29,8 @@ function Square({
 			document.querySelectorAll(`[data-type="found"]`).length ===
 			document.querySelectorAll(`[datatype]`).length
 		) {
-			alert("You win! You found all pokemons!");
+			const dialog = document.querySelector("dialog");
+			dialog.showModal();
 		}
 	}
 	return (
