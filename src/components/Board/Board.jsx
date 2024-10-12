@@ -7,6 +7,7 @@ import Square from "../Square/Square";
 import PokemonOption from "../PokemonOption/PokemonOption";
 import styles from "./Board.module.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Board() {
 	const pokemonList = JSON.parse(localStorage.getItem("PokemonList"));
@@ -18,6 +19,24 @@ function Board() {
 		gridTemplateColumns: `repeat(${longestPokemon}, 1fr)`,
 		gridTemplateRows: `repeat(${longestPokemon}, 1fr)`,
 	};
+
+	const [sqaures, setSquares] = useState(
+		Array(longestPokemon)
+			.fill(null)
+			.map((_, rowIndex) =>
+				Array(longestPokemon)
+					.fill(null)
+					.map((_, colIndex) => (
+						<Square
+							key={`row${rowIndex}` + `col${colIndex}`}
+							letter={randomLetter()}
+							coordinates={[colIndex, rowIndex]}
+							selectedArray={selectedArray}
+							answersArray={answersArray}
+						/>
+					))
+			)
+	);
 
 	//construct board and fill with random letters
 	let boardArray = [];
