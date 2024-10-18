@@ -26,10 +26,12 @@ function SetupForm() {
 	}
 	return (
 		<>
-			<form action="" onSubmit={handleSubmit}>
-				<label htmlFor="numberOfPokemon">Number of Pokemon</label>
+			<form className={styles.setup_form} action="" onSubmit={handleSubmit}>
+				<label className={styles.setup_form__label} htmlFor="numberOfPokemon">
+					Number of Pokemon
+				</label>
 				<input
-					className={styles.input}
+					className={styles.setup_form__input}
 					type="number"
 					id="numberOfPokemon"
 					placeholder="Number of Pokemon"
@@ -38,10 +40,10 @@ function SetupForm() {
 					value={numPokemon}
 					onChange={(e) => setnumPokemon(e.target.value)}
 				/>
-				<label className={styles.difficulty_label} htmlFor="difficulty">
+				<label className={styles.setup_form__label} htmlFor="difficulty">
 					Difficulty
 				</label>
-				<div className={styles.difficulty_radio}>
+				<div>
 					<input
 						type="radio"
 						name="difficulty"
@@ -50,7 +52,9 @@ function SetupForm() {
 						defaultChecked
 						onChange={(e) => setdifficulty(e.target.value)}
 					/>
-					<label htmlFor="difficulty-easy">Easy</label>
+					<label className={styles.setup_form__label} htmlFor="difficulty-easy">
+						Easy
+					</label>
 					<input
 						type="radio"
 						name="difficulty"
@@ -58,7 +62,12 @@ function SetupForm() {
 						value="medium"
 						onChange={(e) => setdifficulty(e.target.value)}
 					/>
-					<label htmlFor="difficulty-medium">Medium</label>
+					<label
+						className={styles.setup_form__label}
+						htmlFor="difficulty-medium"
+					>
+						Medium
+					</label>
 					<input
 						type="radio"
 						name="difficulty"
@@ -66,9 +75,11 @@ function SetupForm() {
 						value="hard"
 						onChange={(e) => setdifficulty(e.target.value)}
 					/>
-					<label htmlFor="difficulty-hard">Hard</label>
+					<label className={styles.setup_form__label} htmlFor="difficulty-hard">
+						Hard
+					</label>
 				</div>
-				<button type="submit" className={styles.button}>
+				<button type="submit" className={styles.setup_form__button}>
 					Generate Board
 				</button>
 			</form>

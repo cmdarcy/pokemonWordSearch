@@ -1,4 +1,10 @@
-.button {
+.setup_form {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+}
+
+.setup_form__button {
 	color: var(--quaternary-color);
 	background-color: var(--tertiary-color);
 	border: 2px solid var(--quaternary-color);
@@ -9,7 +15,12 @@
 	cursor: pointer;
 }
 
-.input {
+.setup_form__input {
 	display: block;
 	margin-inline: auto;
+}
+
+.setup_form__label {
+	color: var(--quaternary-color);
+	margin: auto;
 }
