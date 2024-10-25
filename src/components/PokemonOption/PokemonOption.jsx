@@ -5,7 +5,9 @@ function PokemonOption({ pokemon, id = 1 }) {
 	return (
 		<div className={styles.flex_container}>
 			{difficulty === "easy" ? (
-				<p className={styles.pokemon_name}>{pokemon}</p>
+				<p className={styles.pokemon_name} datatype={pokemon}>
+					{pokemon}
+				</p>
 			) : null}
 			{difficulty === "easy" || difficulty === "medium" ? (
 				<img
