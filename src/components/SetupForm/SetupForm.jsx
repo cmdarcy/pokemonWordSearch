@@ -22,6 +22,7 @@ function SetupForm() {
 		localStorage.setItem("PokemonIds", JSON.stringify(PokemonIds));
 		longestPokemon += 2;
 		localStorage.setItem("longestPokemon", longestPokemon);
+		localStorage.setItem("difficulty", difficulty);
 		navigate("/game");
 	}
 	return (

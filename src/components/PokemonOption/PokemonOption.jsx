@@ -1,14 +1,18 @@
 import styles from "./PokemonOption.module.css";
 function PokemonOption({ pokemon, id = 1 }) {
+	const difficulty = localStorage.getItem("difficulty");
+
 	return (
 		<div className={styles.flex_container}>
-			<p className={styles.pokemon_name} datatype={pokemon}>
-				{pokemon}
-			</p>
-			<img
-				src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-				alt=""
-			/>
+			{difficulty === "easy" ? (
+				<p className={styles.pokemon_name}>{pokemon}</p>
+			) : null}
+			{difficulty === "easy" || difficulty === "medium" ? (
+				<img
+					src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+					alt=""
+				/>
+			) : null}
 			<audio className={styles.audio} controls>
 				<source
 					src={`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`}
