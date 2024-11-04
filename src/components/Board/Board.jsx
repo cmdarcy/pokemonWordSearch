@@ -97,7 +97,8 @@ function Board() {
 			let randomChoice = generateRandomChoice(
 				potentialRow,
 				potentialColumn,
-				potentialDiagonal
+				potentialDiagonal,
+				pokemon
 			);
 
 			console.log(`Attempt ${attempt} for ${pokemon}`);

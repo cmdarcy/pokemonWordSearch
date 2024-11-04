@@ -21,22 +21,33 @@ export function randomStartingCoordinate(number) {
 	return Math.floor(Math.random() * number);
 }
 
-export function generateRandomChoice(horizArray, vertArray, diagArray) {
+export function generateRandomChoice(
+	horizArray,
+	vertArray,
+	diagArray,
+	pokemon
+) {
 	const options = ["horizontal", "diagonal", "vertical"];
 	let chosenOption = options[Math.floor(Math.random() * options.length)];
-	if (!doesOptionWork(chosenOption, horizArray, vertArray, diagArray)) {
+	if (
+		!doesOptionWork(chosenOption, horizArray, vertArray, diagArray, pokemon)
+	) {
 		console.log(`${chosenOption} failed`);
 		let remainingOptions = options.filter((option) => option !== chosenOption);
 		chosenOption =
 			remainingOptions[Math.floor(Math.random() * remainingOptions.length)];
-		if (!doesOptionWork(chosenOption, horizArray, vertArray, diagArray)) {
+		if (
+			!doesOptionWork(chosenOption, horizArray, vertArray, diagArray, pokemon)
+		) {
 			console.log(`${chosenOption} also failed`);
 			remainingOptions = remainingOptions.filter(
 				(option) => option !== chosenOption
 			);
 			chosenOption =
 				remainingOptions[Math.floor(Math.random() * remainingOptions.length)];
-			if (!doesOptionWork(chosenOption, horizArray, vertArray, diagArray)) {
+			if (
+				!doesOptionWork(chosenOption, horizArray, vertArray, diagArray, pokemon)
+			) {
 				console.log(`${chosenOption} finally failed`);
 				return;
 			}
@@ -49,19 +60,65 @@ function doesOptionWork(
 	option,
 	potentialRow,
 	potentialColumn,
-	potentialDiagonal
+	potentialDiagonal,
+	pokemon
 ) {
 	if (option === "horizontal") {
-		return !potentialRow.some((square) =>
-			square.props.hasOwnProperty("associatedPokemon")
-		);
+		if (
+			!potentialRow.some((square) =>
+				square.props.hasOwnProperty("associatedPokemon")
+			)
+		) {
+			return true;
+		}
+		if (
+			potentialRow.some(
+				(square, index) =>
+					square.props.hasOwnProperty("associatedPokemon") &&
+					square.props.letter !== pokemon[index]
+			)
+		) {
+			return false;
+		} else {
+			return true;
+		}
 	} else if (option === "diagonal") {
-		return !potentialDiagonal.some((square) =>
-			square.props.hasOwnProperty("associatedPokemon")
-		);
+		if (
+			!potentialDiagonal.some((square) =>
+				square.props.hasOwnProperty("associatedPokemon")
+			)
+		) {
+			return true;
+		}
+		if (
+			potentialDiagonal.some(
+				(square, index) =>
+					square.props.hasOwnProperty("associatedPokemon") &&
+					square.props.letter !== pokemon[index]
+			)
+		) {
+			return false;
+		} else {
+			return true;
+		}
 	} else if (option === "vertical") {
-		return !potentialColumn.some((square) =>
-			square.props.hasOwnProperty("associatedPokemon")
-		);
+		if (
+			!potentialColumn.some((square) =>
+				square.props.hasOwnProperty("associatedPokemon")
+			)
+		) {
+			return true;
+		}
+		if (
+			potentialColumn.some(
+				(square, index) =>
+					square.props.hasOwnProperty("associatedPokemon") &&
+					square.props.letter !== pokemon[index]
+			)
+		) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }
