@@ -22,6 +22,7 @@ function PokemonOption({ pokemon, id = 1 }) {
 				/>
 				Your browser does not support the audio element.
 			</audio>
+			//TODO create custom audio player to style controls present
 		</div>
 	);
 }

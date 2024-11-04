@@ -20,24 +20,6 @@ function Board() {
 		gridTemplateRows: `repeat(${longestPokemon}, 1fr)`,
 	};
 
-	const [sqaures, setSquares] = useState(
-		Array(longestPokemon)
-			.fill(null)
-			.map((_, rowIndex) =>
-				Array(longestPokemon)
-					.fill(null)
-					.map((_, colIndex) => (
-						<Square
-							key={`row${rowIndex}` + `col${colIndex}`}
-							letter={randomLetter()}
-							coordinates={[colIndex, rowIndex]}
-							selectedArray={selectedArray}
-							answersArray={answersArray}
-						/>
-					))
-			)
-	);
-
 	//construct board and fill with random letters
 	let boardArray = [];
 	for (let row = 0; row < longestPokemon; row++) {
@@ -188,6 +170,7 @@ function Board() {
 			if (attempt === 15) {
 				console.log(`Could not place ${pokemon} after 15 attempts`);
 				alert(`Could not place ${pokemon}`);
+				//TODO Fix alert logic to remove pokemon from answer key and board if it cannot be placed
 			}
 		}
 	});
