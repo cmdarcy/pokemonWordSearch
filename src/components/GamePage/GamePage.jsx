@@ -1,23 +1,25 @@
 import Board from "../Board/Board";
 import PokemonOption from "../PokemonOption/PokemonOption";
+import { useOutletContext } from "react-router-dom";
 import styles from "./GamePage.module.css";
 import { Link } from "react-router-dom";
 
 export default function GamePage() {
-	const pokemonList = JSON.parse(localStorage.getItem("PokemonList"));
-	const PokemonIds = JSON.parse(localStorage.getItem("PokemonIds"));
+	const { board, pokemon, difficulty, longestPokemonLength } =
+		useOutletContext();
 	return (
 		<>
 			<ul className={styles.pokemon_list}>
-				{pokemonList.map((pokemon, index) => (
+				{pokemon.map((pokemon, index) => (
 					<PokemonOption
-						key={pokemon}
-						pokemon={pokemon}
-						id={PokemonIds[index]}
+						key={pokemon.name}
+						pokemon={pokemon.name}
+						id={pokemon.id}
+						difficulty={difficulty}
 					/>
 				))}
 			</ul>
-			<Board />
+			<Board board={board} gridSize={longestPokemonLength} />
 			<dialog>
 				<h2>You won!</h2>
 				<p>You caught them all!</p>

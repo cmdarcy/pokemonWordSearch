@@ -1,7 +1,5 @@
 import styles from "./PokemonOption.module.css";
-function PokemonOption({ pokemon, id = 1 }) {
-	const difficulty = localStorage.getItem("difficulty");
-
+function PokemonOption({ pokemon, id = 1, difficulty = "easy" }) {
 	return (
 		<div className={styles.flex_container}>
 			{difficulty === "easy" ? (
