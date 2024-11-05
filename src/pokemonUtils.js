@@ -32,14 +32,14 @@ export function generateRandomChoice(
 	if (
 		!doesOptionWork(chosenOption, horizArray, vertArray, diagArray, pokemon)
 	) {
-		console.log(`${chosenOption} failed`);
+		// console.log(`${chosenOption} failed`);
 		let remainingOptions = options.filter((option) => option !== chosenOption);
 		chosenOption =
 			remainingOptions[Math.floor(Math.random() * remainingOptions.length)];
 		if (
 			!doesOptionWork(chosenOption, horizArray, vertArray, diagArray, pokemon)
 		) {
-			console.log(`${chosenOption} also failed`);
+			// console.log(`${chosenOption} also failed`);
 			remainingOptions = remainingOptions.filter(
 				(option) => option !== chosenOption
 			);
@@ -48,7 +48,7 @@ export function generateRandomChoice(
 			if (
 				!doesOptionWork(chosenOption, horizArray, vertArray, diagArray, pokemon)
 			) {
-				console.log(`${chosenOption} finally failed`);
+				// console.log(`${chosenOption} finally failed`);
 				return;
 			}
 		}
