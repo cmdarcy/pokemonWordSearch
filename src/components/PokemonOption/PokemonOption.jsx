@@ -1,3 +1,4 @@
+import AudioPlayer from "../AudioPlayer/AudioPlayer";
 import styles from "./PokemonOption.module.css";
 function PokemonOption({ pokemon, id = 1, difficulty = "easy" }) {
 	return (
@@ -13,14 +14,9 @@ function PokemonOption({ pokemon, id = 1, difficulty = "easy" }) {
 					alt=""
 				/>
 			) : null}
-			<audio className={styles.audio} controls>
-				<source
-					src={`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`}
-					type="audio/ogg"
-				/>
-				Your browser does not support the audio element.
-			</audio>
-			//TODO create custom audio player to style controls present
+			<AudioPlayer
+				src={`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`}
+			/>
 		</div>
 	);
 }
