@@ -2,11 +2,9 @@ import AudioPlayer from "../AudioPlayer/AudioPlayer";
 import styles from "./PokemonOption.module.css";
 function PokemonOption({ pokemon, id = 1, difficulty = "easy" }) {
 	return (
-		<div className={styles.flex_container}>
+		<div className={styles.flex_container} datatype={pokemon}>
 			{difficulty === "easy" ? (
-				<p className={styles.pokemon_name} datatype={pokemon}>
-					{pokemon}
-				</p>
+				<p className={styles.pokemon_name}>{pokemon}</p>
 			) : null}
 			{difficulty === "easy" || difficulty === "medium" ? (
 				<img
