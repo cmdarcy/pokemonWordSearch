@@ -8,6 +8,7 @@ function Square({
 	selectedArray,
 	answersArray,
 }) {
+	//TODO style component
 	const [selected, setSelected] = useState(false);
 	function handleClick() {
 		setSelected(!selected);
@@ -20,7 +21,7 @@ function Square({
 				console.log(`You found ${pokemon}`);
 				const PokemonName = document.querySelector(`[datatype="${pokemon}"]`);
 				PokemonName.dataset.type = "found";
-				PokemonName.style.textDecoration = "line-through";
+				PokemonName.classList.add(styles.pokemon__found);
 				selectedArray.splice(0, selectedArray.length);
 			}
 		}
