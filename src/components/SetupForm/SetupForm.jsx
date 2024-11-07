@@ -25,7 +25,12 @@ function SetupForm() {
 	}
 	return (
 		<>
-			//TODO add p describing instructions for using
+			<p className={styles.setup_form__description}>
+				Enter number of Pokemon and choose your difficulty. The difficulty will
+				determine how much information you will be give about the pokemon you
+				are trying to find. Click the letters of each pokemon's name to capture
+				it. Can you catch them all?
+			</p>
 			<form className={styles.setup_form} action="" onSubmit={handleSubmit}>
 				<label className={styles.setup_form__label} htmlFor="numberOfPokemon">
 					Number of Pokemon
