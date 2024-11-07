@@ -36,29 +36,16 @@ function Square({
 	}
 	return (
 		<>
-			{associatedPokemon ? (
-				<button
-					className={
-						selected
-							? styles.selected + " " + styles.board_button
-							: styles.pokemonLetterbox + " " + styles.board_button
-					}
-					onClick={handleClick}
-				>
-					{letter}
-				</button>
-			) : (
-				<button
-					className={
-						selected
-							? styles.selected + " " + styles.board_button
-							: styles.letterbox + " " + styles.board_button
-					}
-					onClick={handleClick}
-				>
-					{letter}
-				</button>
-			)}
+			<button
+				className={
+					selected
+						? styles.selected + " " + styles.board_button
+						: styles.letterbox + " " + styles.board_button
+				}
+				onClick={handleClick}
+			>
+				{letter}
+			</button>
 		</>
 	);
 }

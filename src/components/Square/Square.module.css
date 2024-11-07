@@ -1,18 +1,16 @@
 .letterbox {
-	background-color: cornflowerblue;
+	color: var(--quaternary-color);
+	background-color: var(--tertiary-color);
+	border: 2px solid var(--quaternary-color);
 }
 
-.pokemonLetterbox {
-	background-color: red;
-}
-
-.letterbox:hover,
-.pokemonLetterbox:hover {
-	background-color: darkblue;
+.letterbox:hover {
+	color: var(--tertiary-color);
+	background-color: var(--secondary-color);
 }
 
 .selected {
-	background-color: purple;
+	background-color: var(--tertiary-color-light);
 }
 
 .board_button {

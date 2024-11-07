@@ -35,6 +35,8 @@
 
 .setup_form__button__active:hover {
 	background-color: var(--secondary-color);
+	color: var(--tertiary-color);
+	border: 2px solid var(--tertiary-color);
 }
 
 .setup_form__input {
