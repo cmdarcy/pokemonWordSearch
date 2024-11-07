@@ -13,12 +13,6 @@ function SetupForm() {
 	let longestPokemon = 0;
 	async function handleSubmit(event) {
 		event.preventDefault();
-		if (numPokemon === 0) {
-			alert(
-				"Please choose the number of pokemon to put in your word search first!"
-			);
-			return;
-		}
 		for (let index = 0; index < numPokemon; index++) {
 			let randPokemon = await getRandPokemon();
 			PokemonList.push({ name: randPokemon["name"], id: randPokemon["id"] });
@@ -31,6 +25,7 @@ function SetupForm() {
 	}
 	return (
 		<>
+			//TODO add p describing instructions for using
 			<form className={styles.setup_form} action="" onSubmit={handleSubmit}>
 				<label className={styles.setup_form__label} htmlFor="numberOfPokemon">
 					Number of Pokemon
@@ -40,14 +35,13 @@ function SetupForm() {
 					type="number"
 					id="numberOfPokemon"
 					placeholder="Number of Pokemon"
-					min={0}
+					min={1}
 					max={15}
 					value={numPokemon}
 					onChange={(e) => setnumPokemon(e.target.value)}
+					autoFocus
 				/>
-				<label className={styles.setup_form__label} htmlFor="difficulty">
-					Difficulty
-				</label>
+				<label className={styles.setup_form__label}>Difficulty</label>
 				<div>
 					<input
 						type="radio"
@@ -84,7 +78,15 @@ function SetupForm() {
 						Hard
 					</label>
 				</div>
-				<button type="submit" className={styles.setup_form__button}>
+				<button
+					type="submit"
+					className={
+						numPokemon
+							? `${styles.setup_form__button} ${styles.setup_form__button__active}`
+							: `${styles.setup_form__button} ${styles.setup_form__button__inactive}`
+					}
+					disabled={numPokemon === 0}
+				>
 					Generate Board
 				</button>
 			</form>
