@@ -8,7 +8,6 @@ function Square({
 	selectedArray,
 	answersArray,
 }) {
-	//TODO style component
 	const [selected, setSelected] = useState(false);
 	function handleClick() {
 		setSelected(!selected);
@@ -31,6 +30,7 @@ function Square({
 			document.querySelectorAll(`[datatype]`).length
 		) {
 			const dialog = document.querySelector("dialog");
+			dialog.classList.add("dialog_active");
 			dialog.showModal();
 		}
 	}

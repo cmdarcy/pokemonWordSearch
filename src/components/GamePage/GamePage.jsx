@@ -20,12 +20,13 @@ export default function GamePage() {
 				))}
 			</ul>
 			<Board board={board} gridSize={longestPokemonLength} />
-			<dialog>
+			<dialog className="dialog">
 				<h2>You won!</h2>
 				<p>You caught them all!</p>
 				<button
 					onClick={() => {
 						const dialog = document.querySelector("dialog");
+						dialog.classList.remove("dialog_active");
 						dialog.close();
 					}}
 				>
