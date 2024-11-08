@@ -25,7 +25,15 @@ function App() {
 					}}
 				/>
 			</main>
-			<footer>Created by Christopher d'Arcy</footer>
+			<footer>
+				<p>
+					<a href="https://github.com/cmdarcy/pokemonWordSearch">
+						View source code
+					</a>
+				</p>
+				<p>Created by Christopher d'Arcy</p>
+				<p>Found a bug? cmdarcy89@gmail.com</p>
+			</footer>
 		</>
 	);
 }

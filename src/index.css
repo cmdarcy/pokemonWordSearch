@@ -53,6 +53,18 @@ footer {
 footer {
 	margin-top: auto;
 	color: var(--quaternary-color);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.5em;
+}
+
+footer > p {
+	margin: 0;
+}
+
+footer a {
+	color: var(--secondary-color);
 }
 
 .dialog h2 {
