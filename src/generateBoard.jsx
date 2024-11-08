@@ -11,7 +11,6 @@ export default function generateBoard(
 	updatePokemonList
 ) {
 	const pokemonList = pokemonObjArray;
-	console.log(pokemonList);
 	const longestPokemon = longestPokemonLength + 2;
 	const selectedArray = [];
 	const answersArray = {};
@@ -149,15 +148,10 @@ export default function generateBoard(
 					]);
 				});
 				break;
-			} else {
-				console.log(`Could not place ${pokemon.name} on attempt ${attempt}`);
 			}
 			if (attempt === 15) {
-				console.log(`Could not place ${pokemon.name} after 15 attempts`);
-				alert(`Could not place ${pokemon.name}`);
 				const updatedPokemonList = pokemonList.slice(0, -1);
 				updatePokemonList(updatedPokemonList);
-				console.log(updatedPokemonList);
 			}
 		}
 	});

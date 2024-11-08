@@ -17,7 +17,6 @@ function Square({
 		//loop through answersArray and check if selectedArray matches any pokemon
 		for (const pokemon in answersArray) {
 			if (selectedArray.toString() === answersArray[pokemon].toString()) {
-				console.log(`You found ${pokemon}`);
 				const PokemonName = document.querySelector(`[datatype="${pokemon}"]`);
 				PokemonName.dataset.type = "found";
 				PokemonName.classList.add(styles.pokemon__found);
